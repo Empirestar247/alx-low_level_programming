@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 /**
  * str_concat - Concatenates two strings.
  * @s1: Pointer to first string.
