@@ -13,28 +13,30 @@ char *argstostr(int ac, char **av)
 	if (ac == 0 || av == NULL)
 		return (NULL);
 
-	int total_length = 0;
-	for (int i = 0; i < ac; i++)
+	int i, j, total_length = 0;
+	char *arg, *str;
+
+	for (i = 0; i < ac; i++)
 	{
-		char *arg = av[i];
+		arg = av[i];
 		if (arg == NULL)
 			continue;
-		for (int j = 0; arg[j] != '\0'; j++)
+		for (j = 0; arg[j] != '\0'; j++)
 			total_length++;
 		total_length++;
 	}
 
-	char *str = malloc(sizeof(char) * (total_length + 1));
+	str = malloc(sizeof(char) * (total_length + 1));
 	if (str == NULL)
 		return (NULL);
 
 	int pos = 0;
-	for (int i = 0; i < ac; i++)
+	for (i = 0; i < ac; i++)
 	{
-		char *arg = av[i];
+		arg = av[i];
 		if (arg == NULL)
 			continue;
-		for (int j = 0; arg[j] != '\0'; j++)
+		for (j = 0; arg[j] != '\0'; j++)
 			str[pos++] = arg[j];
 		str[pos++] = '\n';
 	}
