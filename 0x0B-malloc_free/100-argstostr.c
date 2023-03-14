@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * argstostr - concatenates all arguments of the program
- * @ac: argument count
- * @av: argument vector
+ * argstostr - Concatenates all arguments of the program.
+ * @ac: Argument count.
+ * @av: Argument vector.
  *
- * Return: pointer to concatenated string, or NULL if it fails
+ * Return: Pointer to concatenated string, or NULL if it fails.
  */
 char *argstostr(int ac, char **av)
 {
@@ -23,7 +23,6 @@ char *argstostr(int ac, char **av)
     }
 
     str = malloc(sizeof(char) * (len + 1));
-
     if (str == NULL)
         return (NULL);
 
@@ -41,4 +40,3 @@ char *argstostr(int ac, char **av)
 
     return (str);
 }
-
