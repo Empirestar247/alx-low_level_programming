@@ -1,79 +1,64 @@
+#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
-#include <stdbool.h>
 
-static bool is_space(char c) {
-    return (c == ' ' || c == '\t' || c == '\n');
-}
+/**
+ * strtow - Splits a string into words
+ * @str: Pointer to the string to split
+ *
+ * Return: Pointer to an array of strings (words)
+ *         Each element of this array should contain a single word, null-terminated
+ *         The last element of the returned array should be NULL
+ *         Returns NULL if str == NULL or str == ""
+ **/
+char **strtow(char *str)
+{
+        char **words = NULL;
+        int i, j, k, len, word_count = 0;
 
-static size_t count_words(char *str) {
-    size_t count = 0;
-    bool in_word = false;
+        if (str == NULL || *str == '\0')
+                return (NULL);
 
-    while (*str != '\0') {
-        if (!in_word && !is_space(*str)) {
-            in_word = true;
-            count++;
-        } else if (in_word && is_space(*str)) {
-            in_word = false;
+        len = strlen(str);
+
+        for (i = 0; i < len; i++)
+        {
+                if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+                        word_count++;
         }
-        str++;
-    }
 
-    return count;
-}
+        words = malloc(sizeof(char *) * (word_count + 1));
 
-static char *copy_word(char *str) {
-    size_t len = 0;
-    char *word = str;
+        if (words == NULL)
+                return (NULL);
 
-    while (*str != '\0' && !is_space(*str)) {
-        str++;
-        len++;
-    }
+        for (i = 0, j = 0; j < word_count; j++)
+        {
+                while (str[i] == ' ')
+                        i++;
 
-    word = malloc(len + 1);
-    if (word != NULL) {
-        for (size_t i = 0; i < len; i++) {
-            word[i] = *(str - len + i);
-        }
-        word[len] = '\0';
-    }
+                k = i;
 
-    return word;
-}
+                while (str[i] != ' ' && str[i] != '\0')
+                        i++;
 
-char **strtow(char *str) {
-    if (str == NULL || *str == '\0') {
-        return NULL;
-    }
+                words[j] = malloc(sizeof(char) * (i - k + 1));
 
-    size_t num_words = count_words(str);
-    char **words = malloc((num_words + 1) * sizeof(char *));
-    if (words != NULL) {
-        size_t i = 0;
+                if (words[j] == NULL)
+                {
+                        while (--j >= 0)
+                                free(words[j]);
 
-        while (*str != '\0') {
-            if (!is_space(*str)) {
-                char *word = copy_word(str);
-                if (word != NULL) {
-                    words[i++] = word;
-                } else {
-                    for (size_t j = 0; j < i; j++) {
-                        free(words[j]);
-                    }
-                    free(words);
-                    return NULL;
+                        free(words);
+                        return (NULL);
                 }
-                str += strlen(word);
-            } else {
-                str++;
-            }
+
+                strncpy(words[j], &str[k], i - k);
+                words[j][i - k] = '\0';
         }
 
-        words[i] = NULL;
-    }
+        words[word_count] = NULL;
 
-    return words;
+        return (words);
 }
 
