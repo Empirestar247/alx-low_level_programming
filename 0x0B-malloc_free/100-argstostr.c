@@ -29,9 +29,6 @@ for (j = 0; av[i][j]; j++)
 str[n++] = av[i][j];
 str[n++] = '\n';
 }
-
-        str[n] = '\0';
-
-        return (str);
+str[n] = '\0';
+return (str);
 }
-
