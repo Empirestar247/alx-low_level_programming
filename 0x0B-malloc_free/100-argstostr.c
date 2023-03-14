@@ -1,48 +1,50 @@
-#include <stdlib.h>
-
-/**
- * argstostr - Concatenates all the arguments of a program
- *
- * @ac: The number of arguments
- * @av: An array of strings containing the arguments
- *
- * Return: A pointer to the concatenated string, or NULL on failure
- */
-char *argstostr(int ac, char **av)
-{
-	if (ac == 0 || av == NULL)
-		return (NULL);
-
-	int i, j, total_length = 0;
-	char *arg, *str;
-
-	for (i = 0; i < ac; i++)
-	{
-		arg = av[i];
-		if (arg == NULL)
-			continue;
-		for (j = 0; arg[j] != '\0'; j++)
-			total_length++;
-		total_length++;
-	}
-
-	str = malloc(sizeof(char) * (total_length + 1));
-	if (str == NULL)
-		return (NULL);
-
-	int pos;
-	for (i = 0; i < ac; i++)
-	{
-		arg = av[i];
-		if (arg == NULL)
-			continue;
-		pos = 0;
-		while (*arg)
-			str[pos++] = *arg++;
-		str[pos++] = '\n';
-	}
-	str[pos] = '\0';
-
-	return (str);
-}
-
+#include "main.h" 
+#include <stdlib.h> 
+ /** 
+   *argstostr - concatenates all arguments of the program. 
+   *@ac: argument count. 
+   *@av: pointer to array of size ac. 
+   *Return: NULL if ac == 0 or av == null, Pointer to new string. 
+   *NULL on fail. 
+   */ 
+ char *argstostr(int ac, char **av) 
+ { 
+         int i, j, k, size; 
+         char *arg; 
+  
+         size = 0; 
+         k = 0; 
+         if (ac == 0 || av == NULL) 
+                 return (NULL); 
+         i = 0; 
+         while (i < ac) 
+         { 
+                 j = 0; 
+                 while (av[i][j]) 
+                 { 
+                         size++; 
+                         j++; 
+                 } 
+                 size++; 
+                 i++; 
+         } 
+         arg = malloc((sizeof(char) * size) + 1); 
+         if (arg == NULL) 
+                 return (NULL); 
+         i = 0; 
+         while (i < ac) 
+         { 
+                 j = 0; 
+                 while (av[i][j]) 
+                 { 
+                         arg[k] = av[i][j]; 
+                         j++; 
+                         k++; 
+                 } 
+                 arg[k] = '\n'; 
+                 k++; 
+                 i++; 
+         } 
+         arg[k] = '\0'; 
+         return (arg); 
+ }
