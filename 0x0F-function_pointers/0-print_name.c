@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include "function_pointers.h"
 
-/**
-*print_name - this function print a name
-*@name: string to print.
-*@f: this is a function pointer that receives a string.
-*Return: nothing
-*/
 void print_name(char *name, void (*f)(char *))
 {
-	if (name == NULL || f == NULL)
-	return;
-	(*f)(name);
+    size_t len = 0;
+    while (name[len] != '\0') {
+        len++;
+    }
+    char *buffer = (char *)malloc((len + 1) * sizeof(char));
+    if (buffer == NULL) {
+        exit(EXIT_FAILURE);
+    }
+    for (size_t i = 0; i <= len; i++) {
+        buffer[i] = name[i];
+    }
+    f(buffer);
+    free(buffer);
 }
+
