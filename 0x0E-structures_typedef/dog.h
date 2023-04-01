@@ -10,12 +10,22 @@
 *Return: 0 success
 */
 struct dog
-{char *name;
-float age;
-char *owner;
+{
+	char *name;
+	float age;
+	char *owner;
 };
+
+/**
+ * dog_t -typedef for struct dog
+ */
+typedef struct dog dog_t;
+
 /* Additional function prototype */
 int _putchar(char c);
 void init_dog(struct dog *d, char *name, float age, char *owner);
 void print_dog(struct dog *d);
-#endif
+void free_dog(dog_t *d);
+dog_t *new_dog(char *name, float age, char *owner);
+
+#endif /*struct dog */
