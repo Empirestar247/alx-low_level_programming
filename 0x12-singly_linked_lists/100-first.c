@@ -1,13 +1,12 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-void print_before_main(void) __attribute__ ((constructor));
 
 /**
- * print_before_main - Prints a message before the main function is executed.
+ * print_message - prints a message before main function
+ * Return: nothing
  */
-void print_before_main(void)
+void __attribute__((constructor)) print_mesage()
 {
 	printf("you're beat! and yet, you must allow,\n");
 	printf("l bore my house upon my back!\n");
+
 }
