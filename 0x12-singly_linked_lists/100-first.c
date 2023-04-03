@@ -3,7 +3,7 @@
 /**
  * print - function that runs before main
  *
- * Return: nothing
+ * Return: 0 (success)
  */
 void __attribute__((constructor)) print()
 {
