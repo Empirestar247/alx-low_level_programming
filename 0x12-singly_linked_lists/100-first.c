@@ -1,10 +1,11 @@
 #include <stdio.h>
 
 /**
- * print_message - prints a message before main function
+ * premain - function that runs before main
+ *
  * Return: nothing
  */
-void __attribute__((constructor)) print_message()
+void __attribute__((constructor)) premain()
 {
 	printf("you're beat! and yet, you must allow,\n");
 	printf("l bore my house upon my back!\n");
