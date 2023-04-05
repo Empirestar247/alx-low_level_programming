@@ -23,7 +23,7 @@ listint_t *add_nodeint(listint_t **head, const int n)
 	/* update the head pointer to point to the new node */
 	*head = new_node;
 
-	/* return the address of the new node */
+	/* Return the address of the new node */
 
 	return (new_node);
 }
