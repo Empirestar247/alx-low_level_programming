@@ -1,10 +1,9 @@
 #include <stdio.h>
 
 /**
- * premain - prints a message before main function is executed
+ * premain - function that runs before main
  *
- * This function is executed before the main function is called
- * and it prints a message to the standard output
+ * Return: nothing
  */
 void __attribute__ ((constructor)) premain()
 
