@@ -31,7 +31,6 @@ void beforeMain(void)
  * Return: 0 on successful completion of the program
  */
 
-/* Main function that calls beforeMain and prints a message to the console */
 int main(void)
 {
 	/* Call the beforeMain function to print the desired text to the console */
@@ -40,6 +39,5 @@ int main(void)
 	/* Print a message to the console */
 	printf("Hello, world!\n");
 
-	/* Exit the program with a status of 0 to indicate successful completion */
 	return (0);
 }
