@@ -3,7 +3,6 @@
 /**
  * premain - function that runs before main
  *
- * Return: nothing
  */
 void __attribute__ ((constructor)) premain()
 
