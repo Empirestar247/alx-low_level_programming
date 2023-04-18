@@ -1,52 +1,22 @@
-section .data
-    hello: db "Hello, Holberton", 0Ah
-    format: db "%s", 0
+; Declare needed C  functions
+	extern	printf		; the C function, to be called
 
-section .text
-    extern printf
-    extern exit
+	section .data		; Data section, initialized variables
+msg:	db "Hello, Holberton", 0; C string needs 0
+fmt:	db "%s", 10, 0		; The printf format, "\n",'0'
 
-    section .bss
-        buffer resb 32
+	section .text		; Code section.
 
-    section .text
-    global main
+	global main		; the standard gcc entry point
+main:				; the program label for the entry point
+	push	rbp		; set up stack frame, must be alligned
 
-main:
-    push rbp
-    mov rbp, rsp
+	mov	rdi,fmt
+	mov	rsi,msg
+	mov	rax,0		; or can be  xor  rax,rax
+	call	printf		; Call C function
 
-    ; Copy the message to the buffer
-    mov rdi, buffer
-    mov rsi, hello
-    call copy_string
+	pop	rbp		; restore stack
 
-    ; Print the message using printf
-    mov rdi, format
-    mov rsi, buffer
-    xor eax, eax
-    call printf
-
-    ; Exit the program
-    xor edi, edi
-    call exit
-
-copy_string:
-    push rbp
-    mov rbp, rsp
-
-    ; Copy string byte by byte
-    .loop:
-        mov al, byte [rsi]
-        mov byte [rdi], al
-        inc rsi
-        inc rdi
-        cmp byte [rsi - 1], 0
-        jne .loop
-
-    ; Return pointer to destination buffer
-    mov rax, rdi
-    mov rsp, rbp
-    pop rbp
-    ret
-
+	mov	rax,0		; normal, no error, return value
+	ret			; return
